@@ -3,6 +3,7 @@ if (navigator.geolocation) {
 
         let currentLng = position.coords.longitude;
         let currentLat = position.coords.latitude;
+        console.log(currentLng, currentLat)
         mapboxgl.accessToken = 'pk.eyJ1IjoiZGthbDAwMDciLCJhIjoiY2thOWI5NTVoMDZtYzJ3bWdtbDlud29iZCJ9.rjFCx-CDthjvyMJWe5KjsQ';
         var map = new mapboxgl.Map({
             container: 'map', // container id
@@ -21,17 +22,17 @@ if (navigator.geolocation) {
         );
 
 
-        console.log(currentLng, currentLat);
-    })
+        addMarker(map,currentLng,currentLat);
+    });
+
 }
 
-function addMarker(lng, lat) {
-    // Set options
+function addMarker(map,lng, lat) {
     var marker = new mapboxgl.Marker({
-    color: "#FF1234",
-    draggable: true
-    }).setLngLat([30.5, 50.5])
-    .addTo(map);
+        color: "#FF1234",
+        draggable: true
+    }).setLngLat([lng, lat])
+        .addTo(map);
 
     map.flyTo({
         center: [lng, lat],
@@ -40,6 +41,3 @@ function addMarker(lng, lat) {
 
 }
 
-
-addMarker(20,100);
-//removeMarker(markerName);
